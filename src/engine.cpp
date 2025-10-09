@@ -10,7 +10,7 @@
 
 #include <GLFW/glfw3.h>
 
-Engine::Engine() : renderer(resourceManager), resourceLoader(resourceManager) {}
+Engine::Engine() : renderer(resourceManager) {}
 
 void Engine::setAssetPaths(const std::string& path) {
   glState.setBasePath((path + "/shaders/").c_str());
@@ -45,27 +45,27 @@ bool Engine::loadScene(const std::string& sceneIn) {
     return error("Engine", "loadScene", "Failed to load scene: " + sceneIn);
 
   debugLog("ResourceLoader", "loadMeshes", "Start time: " + std::to_string(glfwGetTime()));
-  if(!resourceLoader.loadMeshes(sceneManager.getScene().getComponentsOfType<Model>()))
+  if(!resourceManager.loadMeshes(sceneManager.getScene().getComponentsOfType<Model>()))
 		return error("Engine", "loadMeshes", "Failed to load meshes for scene: " + sceneIn);
   debugLog("ResourceLoader", "loadMeshes", "Finish time: " + std::to_string(glfwGetTime()));
 
   debugLog("ResourceLoader", "loadTextures", "Start time: " + std::to_string(glfwGetTime()));
-  if(!resourceLoader.loadTextures(sceneManager.getScene().getComponentsOfType<TextureData>()))
+  if(!resourceManager.loadTextures(sceneManager.getScene().getComponentsOfType<TextureData>()))
 		return error("Engine", "loadTextures", "Failed to load textures for scene: " + sceneIn);
   debugLog("ResourceLoader", "loadTextures", "Finish time: " + std::to_string(glfwGetTime()));
 
   debugLog("ResourceLoader", "processPrimitives", "Start time: " + std::to_string(glfwGetTime()));
-  if(!resourceLoader.processPrimitives(sceneManager))
+  if(!resourceManager.processPrimitives(sceneManager))
 		return error("Engine", "processPrimitives", "Failed to process primitives for scene: " + sceneIn);
   debugLog("ResourceLoader", "processPrimitives", "Finish time: " + std::to_string(glfwGetTime()));
 
   debugLog("ResourceLoader", "processGrids", "Start time: " + std::to_string(glfwGetTime()));
-  if(!resourceLoader.processGrids(sceneManager))
+  if(!resourceManager.processGrids(sceneManager))
 		return error("Engine", "processGrids", "Failed to process grids for scene: " + sceneIn);
   debugLog("ResourceLoader", "processGrids", "Finish time: " + std::to_string(glfwGetTime()));
 
   debugLog("ResourceLoader", "processTextureConnection", "Start time: " + std::to_string(glfwGetTime()));
-  if (!resourceLoader.processTextureConnections(sceneManager.getScene()))
+  if (!resourceManager.processTextureConnections(sceneManager.getScene()))
     return error("Engine", "processTextureConnection", "Failed to connect texture handles for scene: " + sceneIn);
   debugLog("ResourceLoader", "processTextureConnection", "Finish time: " + std::to_string(glfwGetTime()));
 

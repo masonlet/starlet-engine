@@ -6,7 +6,6 @@
 
 #include "StarletScene/sceneManager.hpp"
 
-#include "StarletGraphics/loader/resourceLoader.hpp"
 #include "StarletGraphics/manager/glStateManager.hpp"
 #include "StarletGraphics/manager/resourceManager.hpp"
 #include "StarletGraphics/renderer/renderer.hpp"
@@ -40,7 +39,6 @@ private:
 
 	SceneManager sceneManager;
 	ResourceManager resourceManager;
-	ResourceLoader resourceLoader;
 
 	Renderer renderer;
 
