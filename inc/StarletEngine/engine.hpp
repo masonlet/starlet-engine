@@ -8,6 +8,7 @@
 
 #include "StarletGraphics/manager/glStateManager.hpp"
 #include "StarletGraphics/manager/resourceManager.hpp"
+#include "StarletGraphics/manager/shaderManager.hpp"
 #include "StarletGraphics/renderer/renderer.hpp"
 
 class Engine {
