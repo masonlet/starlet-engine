@@ -4,7 +4,7 @@
 #include "StarletEngine/timer.hpp"
 #include "StarletControls/inputManager.hpp"
 
-#include "StarletScene/managers/sceneManager.hpp"
+#include "StarletScene/manager/sceneManager.hpp"
 
 #include "StarletGraphics/manager/glStateManager.hpp"
 #include "StarletGraphics/manager/resourceManager.hpp"

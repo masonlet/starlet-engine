@@ -1,12 +1,12 @@
 #include "StarletEngine/engine.hpp"
 
-#include "StarletScene/components/model.hpp"
-#include "StarletScene/components/textureData.hpp"
+#include "StarletScene/component/model.hpp"
+#include "StarletScene/component/textureData.hpp"
 
-#include "StarletScene/systems/cameraMoveSystem.hpp"
-#include "StarletScene/systems/cameraLookSystem.hpp"
-#include "StarletScene/systems/cameraFovSystem.hpp"
-#include "StarletScene/systems/velocitySystem.hpp"
+#include "StarletScene/system/cameraMoveSystem.hpp"
+#include "StarletScene/system/cameraLookSystem.hpp"
+#include "StarletScene/system/cameraFovSystem.hpp"
+#include "StarletScene/system/velocitySystem.hpp"
 
 #include <GLFW/glfw3.h>
 
