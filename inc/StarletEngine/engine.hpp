@@ -25,7 +25,7 @@ public:
 	void updateViewport(const int width, const int height) { windowManager.updateViewport(width, height); }
 
 	void onKey(const KeyEvent& event) { inputManager.onKey(event); }
-	void onScroll(double xOffset, double yOffset) { inputManager.onScroll(xOffset, yOffset); }
+	void onScroll(const ScrollEvent& event) { inputManager.onScroll(event); }
 	void onButton(const MouseButtonEvent& event) { inputManager.onButton(event); }
 
 	void toggleCursorLock() { inputManager.setCursorLocked(windowManager.switchCursorLock()); }

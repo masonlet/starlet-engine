@@ -21,7 +21,7 @@ void framebuffer_size_callback(GLFWwindow* window, const int width, const int he
 void scroll_callback(GLFWwindow* window, const double xOffset, const double yOffset) {
 	Engine* engine = static_cast<Engine*>(glfwGetWindowUserPointer(window));
 	if (!engine) return;
-	engine->onScroll(xOffset, yOffset);
+	engine->onScroll({ xOffset, yOffset });
 }
 void mouse_button_callback(GLFWwindow* window, const int button, const int action, const int mods) {
 	Engine* engine = static_cast<Engine*>(glfwGetWindowUserPointer(window));
