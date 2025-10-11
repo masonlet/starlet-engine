@@ -13,7 +13,7 @@
 Engine::Engine() : renderer(resourceManager) {}
 
 void Engine::setAssetPaths(const std::string& path) {
-  glState.setBasePath((path + "/shaders/").c_str());
+  shaderManager.setBasePath((path + "/shaders/").c_str());
   resourceManager.setBasePath(path);
   sceneManager.setBasePath((path + "/scenes/").c_str());
 }
@@ -24,12 +24,16 @@ bool Engine::initialize(const unsigned int width, const unsigned int height, con
   if (!windowManager.createWindow(width, height, title)) 
     return error("Engine", "initialize", "Failed to initialize window");
 
-  if (!glState.init()) 
-    error("Engine", "initialize", "Failed to initialize GL state");
+  if (!shaderManager.createProgramFromPaths("shader1", "vertex_shader.glsl", "fragment_shader.glsl"))
+    return error("Engine", "initialize", "Failed to create shader program from file");
+
+  if (!glState.setProgram(shaderManager.getProgramID("shader1")))
+    return error("GLStateManager", "init", "Failed to set initial program");
 
   if (!renderer.init(glState.getProgram())) 
     return error("Engine", "initialize", "Failed to setup shaders for renderer");
 
+  glState.setGLStateDefault();
   windowManager.setWindowPointer(this);
   return debugLog("Engine", "initialize", "Finish Time: " + std::to_string(glfwGetTime()));
 }

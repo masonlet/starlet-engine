@@ -37,6 +37,7 @@ private:
 	InputManager inputManager;
 	GLStateManager glState;
 
+	ShaderManager shaderManager;
 	SceneManager sceneManager;
 	ResourceManager resourceManager;
 
