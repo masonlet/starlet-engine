@@ -1,11 +1,13 @@
 #pragma once
 
-class Timer {
-public:
-	Timer();
+namespace Starlet::Engine {
+	class Timer {
+	public:
+		Timer();
 
-	float tick();
+		float tick();
 
-private:
-	  float lastTime;
-};
+	private:
+		float lastTime;
+	};
+}

@@ -1,35 +1,42 @@
 #pragma once
 
 struct GLFWwindow;
-class InputManager;
 
-class Window {
-public:
-	Window() = default;
-	~Window();
+namespace Starlet {
+	namespace Input {
+		class InputManager;
+	}
 
-	bool createWindow(const unsigned int widthIn, const unsigned int heightIn, const char* title);
+	namespace Engine {
+		class Window {
+		public:
+			Window() = default;
+			~Window();
 
-	GLFWwindow* getGLFWwindow() const { return window; }
-	bool shouldClose() const;
+			bool createWindow(const unsigned int widthIn, const unsigned int heightIn, const char* title);
 
-	unsigned int getWidth()  const { return width; }
-	unsigned int getHeight() const { return height; }
-	float        getAspect() const { return static_cast<float>(width) / static_cast<float>(height); }
+			GLFWwindow* getGLFWwindow() const { return window; }
+			bool shouldClose() const;
 
-	void pollEvents() const;
-	void swapBuffers() const;
-	void requestClose() const;
+			unsigned int getWidth()  const { return width; }
+			unsigned int getHeight() const { return height; }
+			float        getAspect() const { return static_cast<float>(width) / static_cast<float>(height); }
 
-	void setWindowPointer(void* userPointer) const;
-	void setCurrentWindow() const;
+			void pollEvents() const;
+			void swapBuffers() const;
+			void requestClose() const;
 
-	void updateViewport(const unsigned int width, const unsigned int height);
+			void setWindowPointer(void* userPointer) const;
+			void setCurrentWindow() const;
 
-	bool switchActiveWindowVisibility();
-	bool switchCursorLock();
+			void updateViewport(const unsigned int width, const unsigned int height);
 
-private:
-	GLFWwindow* window{ nullptr };
-	unsigned int width{ 0 }, height{ 0 };
-};
+			bool switchActiveWindowVisibility();
+			bool switchCursorLock();
+
+		private:
+			GLFWwindow* window{ nullptr };
+			unsigned int width{ 0 }, height{ 0 };
+		};
+	}
+}

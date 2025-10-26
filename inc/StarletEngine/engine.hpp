@@ -11,39 +11,40 @@
 #include "StarletGraphics/manager/shaderManager.hpp"
 #include "StarletGraphics/renderer/renderer.hpp"
 
-class Engine {
-public:
-	Engine();
-	~Engine() = default;
+namespace Starlet::Engine {
+	class Engine {
+	public:
+		Engine();
+		~Engine() = default;
 
-	void setAssetPaths(const std::string& path);
-	bool initialize(const unsigned int width, const unsigned int height, const char* title);
+		void setAssetPaths(const std::string& path);
+		bool initialize(const unsigned int width, const unsigned int height, const char* title);
 
-	bool loadScene(const std::string& sceneIn = "Default");
-	void run();
+		bool loadScene(const std::string& sceneIn = "Default");
+		void run();
 
-	void updateViewport(const int width, const int height) { windowManager.updateViewport(width, height); }
+		void updateViewport(const int width, const int height) { windowManager.updateViewport(width, height); }
 
-	void onKey(const KeyEvent& event) { inputManager.onKey(event); }
-	void onScroll(const ScrollEvent& event) { inputManager.onScroll(event); }
-	void onButton(const MouseButtonEvent& event) { inputManager.onButton(event); }
+		void onKey(const KeyEvent& event) { inputManager.onKey(event); }
+		void onScroll(const Input::ScrollEvent& event) { inputManager.onScroll(event); }
+		void onButton(const Input::MouseButtonEvent& event) { inputManager.onButton(event); }
 
-	void toggleCursorLock() { inputManager.setCursorLocked(windowManager.switchCursorLock()); }
-	void toggleWireframe() { glState.toggleWireframe(); };
+		void toggleCursorLock() { inputManager.setCursorLocked(windowManager.switchCursorLock()); }
+		void toggleWireframe() { glState.toggleWireframe(); };
 
-private:
+	private:
+		WindowManager windowManager;
+		Timer timer;
+		Input::InputManager inputManager;
+		Graphics::GLStateManager glState;
 
-	WindowManager windowManager;
-	Timer timer;
-	InputManager inputManager;
-	GLStateManager glState;
+		Graphics::ShaderManager shaderManager;
+		Graphics::ResourceManager resourceManager;
+		Scene::SceneManager sceneManager;
 
-	ShaderManager shaderManager;
-	SceneManager sceneManager;
-	ResourceManager resourceManager;
+		Graphics::Renderer renderer;
 
-	Renderer renderer;
-
-	void handleKeyEvents(const std::vector<KeyEvent>& keyEvents);
-	void handleButtonEvents(const std::vector<MouseButtonEvent>& buttonEvents);
-};
+		void handleKeyEvents(const std::vector<KeyEvent>& keyEvents);
+		void handleButtonEvents(const std::vector<Input::MouseButtonEvent>& buttonEvents);
+	};
+}
