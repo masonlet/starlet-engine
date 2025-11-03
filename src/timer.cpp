@@ -1,5 +1,5 @@
 #include "StarletEngine/timer.hpp"
-#include "StarletSerializer/utils/log.hpp"
+#include "StarletLogger/logger.hpp"
 
 #include "GLFW/glfw3.h"
 
@@ -20,7 +20,7 @@ namespace Starlet::Engine {
 		lastTime = currentTime;
 		float deltaTime = (rawDelta > maxDelta) ? maxDelta : rawDelta;
 
-		if (rawDelta > maxDelta) Serializer::debugLog("Engine", "Tick", "deltaTime clamped to " + std::to_string(maxDelta) + " (was " + std::to_string(rawDelta) + ")");
+		if (rawDelta > maxDelta) Logger::debugLog("Engine", "Tick", "deltaTime clamped to " + std::to_string(maxDelta) + " (was " + std::to_string(rawDelta) + ")");
 		return deltaTime;
 	}
 }
