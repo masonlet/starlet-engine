@@ -1,7 +1,7 @@
-#include "StarletEngine/windowManager.hpp"
-#include "StarletLogger/logger.hpp"
+#include "starlet-engine/windowManager.hpp"
+#include "starlet-logger/logger.hpp"
 
-#include "StarletEngine/callbacks.hpp"
+#include "starlet-engine/callbacks.hpp"
 
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>

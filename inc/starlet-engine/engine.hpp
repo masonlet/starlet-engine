@@ -1,15 +1,15 @@
 #pragma once
 
-#include "StarletEngine/windowManager.hpp"
-#include "StarletEngine/timer.hpp"
-#include "StarletControls/inputManager.hpp"
+#include "starlet-engine/windowManager.hpp"
+#include "starlet-engine/timer.hpp"
+#include "starlet-controls/inputManager.hpp"
 
-#include "StarletScene/manager/sceneManager.hpp"
+#include "starlet-scene/manager/sceneManager.hpp"
 
-#include "StarletGraphics/manager/glStateManager.hpp"
-#include "StarletGraphics/manager/resourceManager.hpp"
-#include "StarletGraphics/manager/shaderManager.hpp"
-#include "StarletGraphics/renderer/renderer.hpp"
+#include "starlet-graphics/manager/glStateManager.hpp"
+#include "starlet-graphics/manager/resourceManager.hpp"
+#include "starlet-graphics/manager/shaderManager.hpp"
+#include "starlet-graphics/renderer/renderer.hpp"
 
 namespace Starlet::Engine {
 	class Engine {

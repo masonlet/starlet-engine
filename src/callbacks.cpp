@@ -1,6 +1,6 @@
-#include "StarletEngine/callbacks.hpp"
+#include "starlet-engine/callbacks.hpp"
 
-#include "StarletEngine/engine.hpp"
+#include "starlet-engine/engine.hpp"
 
 #include <GLFW/glfw3.h>
 #include <stdio.h>

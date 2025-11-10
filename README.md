@@ -1,4 +1,4 @@
-# StarletEngine
+# Starlet Engine
 A modular OpenGL engine written in C++
 
 # Features
@@ -25,8 +25,11 @@ A modular OpenGL engine written in C++
 ```cmake
 include(FetchContent)
 
-FetchContent_Declare(StarletEngine GIT_REPOSITORY https://github.com/Masonlet/StarletEngine.git GIT_TAG main)
-FetchContent_MakeAvailable(StarletEngine)
+FetchContent_Declare(starlet_engine
+  GIT_REPOSITORY https://github.com/masonlet/starlet-engine.git 
+  GIT_TAG main
+)
+FetchContent_MakeAvailable(starlet_engine)
 
-target_link_libraries(YourAppName PRIVATE StarletEngine)
+target_link_libraries(YourAppName PRIVATE starlet_engine)
 ```

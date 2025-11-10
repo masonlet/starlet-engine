@@ -1,5 +1,5 @@
-#include "StarletEngine/timer.hpp"
-#include "StarletLogger/logger.hpp"
+#include "starlet-engine/timer.hpp"
+#include "starlet-logger/logger.hpp"
 
 #include "GLFW/glfw3.h"
 
