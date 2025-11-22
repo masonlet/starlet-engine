@@ -2,12 +2,12 @@
 #include "starlet-logger/logger.hpp"
 
 #include "starlet-scene/component/model.hpp"
-#include "starlet-scene/component/textureData.hpp"
+#include "starlet-scene/component/texture_data.hpp"
 
-#include "starlet-scene/system/cameraMoveSystem.hpp"
-#include "starlet-scene/system/cameraLookSystem.hpp"
-#include "starlet-scene/system/cameraFovSystem.hpp"
-#include "starlet-scene/system/velocitySystem.hpp"
+#include "starlet-scene/system/camera_move_system.hpp"
+#include "starlet-scene/system/camera_look_system.hpp"
+#include "starlet-scene/system/camera_fov_system.hpp"
+#include "starlet-scene/system/velocity_system.hpp"
 
 #include <GLFW/glfw3.h>
 
@@ -21,7 +21,7 @@ namespace Starlet::Engine {
   }
 
   bool Engine::initialize(const unsigned int width, const unsigned int height, const char* title) {
-    Logger::debugLog("Engine", "initialize", "Start time: " + std::to_string(glfwGetTime()));
+    Logger::debug("Engine", "initialize", "Start time: " + std::to_string(glfwGetTime()));
 
     if (!windowManager.createWindow(width, height, title))
       return Logger::error("Engine", "initialize", "Failed to initialize window");
@@ -37,11 +37,11 @@ namespace Starlet::Engine {
 
     glState.setGLStateDefault();
     windowManager.setWindowPointer(this);
-    return Logger::debugLog("Engine", "initialize", "Finish Time: " + std::to_string(glfwGetTime()));
+    return Logger::debug("Engine", "initialize", "Finish Time: " + std::to_string(glfwGetTime()));
   }
 
   bool Engine::loadScene(const std::string& sceneIn) {
-    Logger::debugLog("Engine", "loadScene", "Start time: " + std::to_string(glfwGetTime()));
+    Logger::debug("Engine", "loadScene", "Start time: " + std::to_string(glfwGetTime()));
 
     if (sceneIn.empty()) {
       if (!sceneManager.loadTxtScene("EmptyScene.txt"))
@@ -50,37 +50,37 @@ namespace Starlet::Engine {
     else if (!sceneManager.loadTxtScene(sceneIn + ".txt"))
       return Logger::error("Engine", "loadScene", "Failed to load scene: " + sceneIn);
 
-    Logger::debugLog("ResourceLoader", "loadMeshes", "Start time: " + std::to_string(glfwGetTime()));
+    Logger::debug("ResourceLoader", "loadMeshes", "Start time: " + std::to_string(glfwGetTime()));
     if (!resourceManager.loadMeshes(sceneManager.getScene().getComponentsOfType<Scene::Model>()))
       return Logger::error("Engine", "loadMeshes", "Failed to load meshes for scene: " + sceneIn);
-    Logger::debugLog("ResourceLoader", "loadMeshes", "Finish time: " + std::to_string(glfwGetTime()));
+    Logger::debug("ResourceLoader", "loadMeshes", "Finish time: " + std::to_string(glfwGetTime()));
 
-    Logger::debugLog("ResourceLoader", "loadTextures", "Start time: " + std::to_string(glfwGetTime()));
+    Logger::debug("ResourceLoader", "loadTextures", "Start time: " + std::to_string(glfwGetTime()));
     if (!resourceManager.loadTextures(sceneManager.getScene().getComponentsOfType<Scene::TextureData>()))
       return Logger::error("Engine", "loadTextures", "Failed to load textures for scene: " + sceneIn);
-    Logger::debugLog("ResourceLoader", "loadTextures", "Finish time: " + std::to_string(glfwGetTime()));
+    Logger::debug("ResourceLoader", "loadTextures", "Finish time: " + std::to_string(glfwGetTime()));
 
-    Logger::debugLog("ResourceLoader", "processPrimitives", "Start time: " + std::to_string(glfwGetTime()));
+    Logger::debug("ResourceLoader", "processPrimitives", "Start time: " + std::to_string(glfwGetTime()));
     if (!resourceManager.processPrimitives(sceneManager))
       return Logger::error("Engine", "processPrimitives", "Failed to process primitives for scene: " + sceneIn);
-    Logger::debugLog("ResourceLoader", "processPrimitives", "Finish time: " + std::to_string(glfwGetTime()));
+    Logger::debug("ResourceLoader", "processPrimitives", "Finish time: " + std::to_string(glfwGetTime()));
 
-    Logger::debugLog("ResourceLoader", "processGrids", "Start time: " + std::to_string(glfwGetTime()));
+    Logger::debug("ResourceLoader", "processGrids", "Start time: " + std::to_string(glfwGetTime()));
     if (!resourceManager.processGrids(sceneManager))
       return Logger::error("Engine", "processGrids", "Failed to process grids for scene: " + sceneIn);
-    Logger::debugLog("ResourceLoader", "processGrids", "Finish time: " + std::to_string(glfwGetTime()));
+    Logger::debug("ResourceLoader", "processGrids", "Finish time: " + std::to_string(glfwGetTime()));
 
-    Logger::debugLog("ResourceLoader", "processTextureConnection", "Start time: " + std::to_string(glfwGetTime()));
+    Logger::debug("ResourceLoader", "processTextureConnection", "Start time: " + std::to_string(glfwGetTime()));
     if (!resourceManager.processTextureConnections(sceneManager.getScene()))
       return Logger::error("Engine", "processTextureConnection", "Failed to connect texture handles for scene: " + sceneIn);
-    Logger::debugLog("ResourceLoader", "processTextureConnection", "Finish time: " + std::to_string(glfwGetTime()));
+    Logger::debug("ResourceLoader", "processTextureConnection", "Finish time: " + std::to_string(glfwGetTime()));
 
     sceneManager.getScene().registerSystem(std::make_unique<Scene::CameraMoveSystem>());
     sceneManager.getScene().registerSystem(std::make_unique<Scene::CameraLookSystem>());
     sceneManager.getScene().registerSystem(std::make_unique<Scene::CameraFovSystem>());
     sceneManager.getScene().registerSystem(std::make_unique<Scene::VelocitySystem>());
 
-    return Logger::debugLog("Engine", "loadScene", "Finish Time: " + std::to_string(glfwGetTime()));
+    return Logger::debug("Engine", "loadScene", "Finish Time: " + std::to_string(glfwGetTime()));
   }
 
   void Engine::run() {
@@ -137,7 +137,7 @@ namespace Starlet::Engine {
       default: return;
       }
 
-      Logger::debugLog("Input", "Mouse", "Button " + buttonName + " " + actionName);
+      Logger::debug("Input", "Mouse", "Button " + buttonName + " " + actionName);
     }
   }
 }

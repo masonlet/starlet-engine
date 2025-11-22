@@ -1,7 +1,7 @@
 #include "starlet-engine/window.hpp"
 #include "starlet-logger/logger.hpp"
 
-#include "starlet-controls/inputManager.hpp"
+#include "starlet-controls/input_manager.hpp"
 
 #include <GLFW/glfw3.h>
 #include <cstdio>
@@ -20,7 +20,7 @@ namespace Starlet::Engine {
 
 		width = widthIn;
 		height = heightIn;
-		return Logger::debugLog("Window", "createWindow", "Created window: " + std::string(title) + " - " + std::to_string(width) + " x " + std::to_string(height));
+		return Logger::debug("Window", "createWindow", "Created window: " + std::string(title) + " - " + std::to_string(width) + " x " + std::to_string(height));
 	}
 	bool Window::shouldClose() const {
 		return window ? glfwWindowShouldClose(window) : true;
@@ -56,11 +56,12 @@ namespace Starlet::Engine {
 		if (!window) return Logger::error("Window", "switchActiveWindowVisibility", "No active window to switch visibility.");
 
 		const int isVisible = (glfwGetWindowAttrib(window, GLFW_VISIBLE) == GLFW_TRUE) ? GLFW_FALSE : GLFW_TRUE;
-		(isVisible == GLFW_TRUE) ? glfwShowWindow(window) : glfwHideWindow(window);
-
-		return (isVisible == GLFW_TRUE)
-			? Logger::debugLog("Window", "switchWindowVisibility", "Window shown")
-			: Logger::debugLog("Window", "switchWindowVisibility", "Window hidden", false);
+		const bool windowVisible = (isVisible == GLFW_TRUE);
+		
+		windowVisible ? glfwShowWindow(window) : glfwHideWindow(window);
+		windowVisible ? Logger::debug("Window", "switchWindowVisibility", "Window shown")
+			            : Logger::debug("Window", "switchWindowVisibility", "Window hidden");
+		return windowVisible;
 	}
 	bool Window::switchCursorLock() {
 		if (!window) return Logger::error("Window", "switchCursorLock", "No active window to switch cursor lock.");
@@ -68,8 +69,9 @@ namespace Starlet::Engine {
 		const int cursorMode = glfwGetInputMode(window, GLFW_CURSOR) == GLFW_CURSOR_DISABLED ? GLFW_CURSOR_NORMAL : GLFW_CURSOR_DISABLED;
 		glfwSetInputMode(window, GLFW_CURSOR, cursorMode);
 
-		return (cursorMode == GLFW_CURSOR_DISABLED)
-			? Logger::debugLog("Window", "switchCursorLock", "Cursor locked")
-			: Logger::debugLog("Window", "switchCursorLock", "Cursor unlocked", false);
+		const bool cursorLocked = (cursorMode == GLFW_CURSOR_DISABLED);
+		cursorLocked ? Logger::debug("Window", "switchCursorLock", "Cursor locked")
+			           : Logger::debug("Window", "switchCursorLock", "Cursor unlocked");
+		return cursorLocked;
 	}
 }
