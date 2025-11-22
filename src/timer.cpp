@@ -20,7 +20,7 @@ namespace Starlet::Engine {
 		lastTime = currentTime;
 		float deltaTime = (rawDelta > maxDelta) ? maxDelta : rawDelta;
 
-		if (rawDelta > maxDelta) Logger::debugLog("Engine", "Tick", "deltaTime clamped to " + std::to_string(maxDelta) + " (was " + std::to_string(rawDelta) + ")");
+		if (rawDelta > maxDelta) Logger::debug("Engine", "Tick", "deltaTime clamped to " + std::to_string(maxDelta) + " (was " + std::to_string(rawDelta) + ")");
 		return deltaTime;
 	}
 }

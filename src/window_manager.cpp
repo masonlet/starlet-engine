@@ -1,4 +1,4 @@
-#include "starlet-engine/windowManager.hpp"
+#include "starlet-engine/window_manager.hpp"
 #include "starlet-logger/logger.hpp"
 
 #include "starlet-engine/callbacks.hpp"
@@ -19,7 +19,7 @@ namespace Starlet::Engine {
   }
 
   bool WindowManager::createWindow(const unsigned int width, const unsigned int height, const char* title) {
-    Logger::debugLog("WindowManager", "createWindow", "Start time : " + std::to_string(glfwGetTime()));
+    Logger::debug("WindowManager", "createWindow", "Start time : " + std::to_string(glfwGetTime()));
 
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, GL_MAJOR);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, GL_MINOR);
@@ -45,10 +45,10 @@ namespace Starlet::Engine {
     glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
     glfwSwapInterval(1);
 
-    Logger::debugLog("Window", "OpenGL", "OpenGL Info");
-    Logger::debugLog("Window", "OpenGL", "Version: " + std::string(reinterpret_cast<const char*>(glGetString(GL_VERSION))));
-    Logger::debugLog("Window", "OpenGL", "Vendor: " + std::string(reinterpret_cast<const char*>(glGetString(GL_VENDOR))));
-    Logger::debugLog("Window", "OpenGL", "Renderer: " + std::string(reinterpret_cast<const char*>(glGetString(GL_RENDERER))));
-    return Logger::debugLog("WindowManager", "createWindow", "Finish time: " + std::to_string(glfwGetTime()));
+    Logger::debug("Window", "OpenGL", "OpenGL Info");
+    Logger::debug("Window", "OpenGL", "Version: " + std::string(reinterpret_cast<const char*>(glGetString(GL_VERSION))));
+    Logger::debug("Window", "OpenGL", "Vendor: " + std::string(reinterpret_cast<const char*>(glGetString(GL_VENDOR))));
+    Logger::debug("Window", "OpenGL", "Renderer: " + std::string(reinterpret_cast<const char*>(glGetString(GL_RENDERER))));
+    return Logger::debug("WindowManager", "createWindow", "Finish time: " + std::to_string(glfwGetTime()));
   }
 }
